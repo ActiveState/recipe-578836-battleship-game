@@ -1,0 +1,24 @@
+# Want to find out what you can do with this file? Head over to:
+# http://docs.activestate.com/platform/state/start.html
+project: https://platform.activestate.com/ActiveState-Recipes/recipe-578836-battleships-game
+scripts:
+  - name: recipe
+    description: Runs the recipe
+    value: python recipe.py
+  - name: getting-started
+    description: Information to help you get started with your recipe and the State Tool
+    language: python
+    value: |
+      print("""
+      You're now ready to run the recipe! To run the recipe use the following command:
+      - state run recipe
+      To list all available scripts run 'state scripts'.
+      To make changes to the above command open up activestate.yaml. 
+      For more information on how to use the State Tool run `state --help`, or to find out 
+      more about the State Tool itself visit https://www.activestate.com/products/platform/state-tool/.
+      """)
+events:
+  # This is the ACTIVATE event, it will run whenever a new virtual environment is created (eg. by running `state activate`)
+  # On Linux and macOS this will be ran as part of your shell's rc file, so you can use it to set up aliases, functions, environment variables, etc
+  - name: ACTIVATE
+    value: python ${scripts.getting-started.path()}
